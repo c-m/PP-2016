@@ -71,7 +71,7 @@ instance Evaluable Expr Integer where
 	eval context (x `Mul` y) = case (eval context x, eval context y) of
 									(Value x', Value y') -> Value (x' * y')
 									_ -> Error
-
+-- 7
 instance Evaluable Expr (FIFO a) where
 	eval context (Val f) = Value f
 	eval context (Var v) = valueof context v
