@@ -15,8 +15,6 @@ data FIFO a = P [a] [a] deriving (Eq)
 -- 2
 instance Show a => Show (FIFO a) where
 	show (P [] []) = "[]"
-	show (P s1 []) = show $ reverse s1
-	show (P [] s2) = show $ s2
 	show (P s1 s2) = show $ s2 ++ reverse s1
 
 -- operatii FIFO
@@ -58,10 +56,11 @@ valueof d s = let
 -- but a _RELATION_ between a type-constructor with kind * => * and a type (i.e. type constructor with type *). 
 -- The relation specifies that types "t a" (containers) may be evaluated with respect to interpretations of type "Dictionary a". 
 class Evaluable t a where
-	-- 		context		container 	result
+	-- 	context		container 	result
 	eval :: Dictionary a -> t a -> Result a
 
 -- 6
+-- TODO: implementare gresita, trebuie refacuta.
 instance Evaluable Expr Integer where
 	eval context (Val x) = Value x
 	eval context (Var v) = valueof context v
