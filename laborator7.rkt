@@ -1,6 +1,7 @@
 #lang racket
 (require 2htdp/image)
 
+; factorial fun 
 (let sierpinski ([n 4])
   (if (zero? n)
       (triangle 2 'solid 'red)
@@ -44,13 +45,17 @@ a
 (foldl cons '() '(1 2 3))
 (foldr cons '() '(1 2 3))
 
-; weakly typed
-'(1 (2 3) "lista")
+; dynamically typed (runtime typed)
 (define fw (lambda(x) (if x "lista" '())))
 
-; runtime typing
-(define value #t)
+(define value #t) ; if value is #f -> error!
 (if value 100 (+ '() 1))
+
+; Racket is strongly typed!
+; (+ 1 "OK") -> this returns error
+
+; this is not an example of weak typing!
+'(1 (2 3) "lista") ; a scheme program can be a list (it can also be a pair, or just the #t, #f boolean values)
 
 ;factorial classic
 (define factorial
